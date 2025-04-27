@@ -33,6 +33,7 @@ const Home: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
+        backgroundColor: "#121212",
       }}
     >
       <h1 style={{ marginBottom: "1rem", color: "#fff" }}>זה שבצד 🛕</h1>
@@ -82,17 +83,36 @@ const Home: React.FC = () => {
         }}
       />
       <br />
-      <button
-        onClick={handleAsk}
-        disabled={loading}
-        style={{
-          padding: "0.8rem 2rem",
-          fontSize: "1.2rem",
-          marginBottom: "2rem",
-        }}
-      >
-        {loading ? "שואל את זה שבצד..." : "תשאל את זה שבצד"}
-      </button>
+
+      {loading ? (
+        <div
+          style={{
+            border: "6px solid #ccc",
+            borderTop: "6px solid #00FFAA",
+            borderRadius: "50%",
+            width: "50px",
+            height: "50px",
+            animation: "spin 1s linear infinite",
+            marginBottom: "2rem",
+          }}
+        />
+      ) : (
+        <button
+          onClick={handleAsk}
+          style={{
+            padding: "0.8rem 2rem",
+            fontSize: "1.2rem",
+            marginBottom: "2rem",
+            backgroundColor: "#00FFAA",
+            color: "#000",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+          }}
+        >
+          תשאל את זה שבצד
+        </button>
+      )}
 
       <div
         style={{
@@ -109,8 +129,24 @@ const Home: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* אנימציה של הספינר */}
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+          }
+        `}
+      </style>
     </div>
   );
 };
 
 export default Home;
+
